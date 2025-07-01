@@ -33,7 +33,7 @@ const Home = () => {
   return (
     <div className="home">
       <Navbar />
-      <Banner />
+      {/* <Banner /> */}
       <div className="hero">
         {movies.length > 0 && (
           <Swiper
