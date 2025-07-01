@@ -31,7 +31,7 @@ const Home = () => {
               More Info
             </button>
           </div>
-          <Cardtitle title={"Popular"}/>
+          <Cardtitle title={"Popular"} />
         </div>
       </div>
       <div className="more-cards">

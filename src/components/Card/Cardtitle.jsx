@@ -4,6 +4,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "./ct.css";
+import { Link } from "react-router-dom";
 
 const Cardtitle = ({ title, category }) => {
   const [apiData, setApiData] = useState([]);
@@ -19,40 +20,41 @@ const Cardtitle = ({ title, category }) => {
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/movie/${
-        category ? category : "now_playing"
+        category || "now_playing"
       }?language=en-US&page=1`,
       options
     )
       .then((res) => res.json())
-      .then((res) => setApiData(res.results))
+      .then((res) => setApiData(res.results || []))
       .catch((err) => console.error(err));
-  }, []);
+  }, [category]);
 
   return (
     <div className="cardtitle">
-      <h2>{title ? title : "Popular on Myfix"}</h2>
+      <h2>{title || "Popular on Myfix"}</h2>
       {apiData.length > 0 && (
         <Swiper
           slidesPerView={5}
           spaceBetween={10}
-          loop={true}
+          loop
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
-            pauseOnMouseEnter: false,
           }}
           modules={[Autoplay]}
           className="swiper-container"
         >
-          {apiData.map((card, index) => (
-            <SwiperSlide key={index}>
-              <div className="card">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500` + card.backdrop_path}
-                  alt={card.name}
-                />
-                <p>{card.original_title}</p>
-              </div>
+          {apiData.map((card) => (
+            <SwiperSlide key={card.id}>
+              <Link to={`/player/${card.id}`}>
+                <div className="card">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${card.backdrop_path}`}
+                    alt={card.name}
+                  />
+                  <p>{card.original_title}</p>
+                </div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
