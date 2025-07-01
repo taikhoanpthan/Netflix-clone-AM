@@ -7,7 +7,7 @@ import Navbar from "./../../components/Nav/Navbar";
 import Footer from "../../components/footer/Footer";
 import Cardtitle from "../../components/Card/Cardtitle";
 import "./Home.css";
-import Banner from "../../components/ban/ban";
+import Banner from "../../components/Ban/ban";
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
