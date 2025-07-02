@@ -6,8 +6,9 @@ import "swiper/css/autoplay";
 import "./ct.css";
 import { Link } from "react-router-dom";
 
-const Cardtitle = ({ title, category }) => {
+const Cardtitle = ({ title, category, poster }) => {
   const [apiData, setApiData] = useState([]);
+
   const options = {
     method: "GET",
     headers: {
@@ -35,7 +36,7 @@ const Cardtitle = ({ title, category }) => {
       {apiData.length > 0 && (
         <Swiper
           slidesPerView={5}
-          spaceBetween={10}
+          spaceBetween={20}
           loop
           autoplay={{
             delay: 3000,
@@ -47,10 +48,12 @@ const Cardtitle = ({ title, category }) => {
           {apiData.map((card) => (
             <SwiperSlide key={card.id}>
               <Link to={`/player/${card.id}`}>
-                <div className="card">
+                <div className={`card ${poster ? "poster" : ""}`}>
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${card.backdrop_path}`}
-                    alt={card.name}
+                    src={`https://image.tmdb.org/t/p/w500${
+                      poster ? card.poster_path : card.backdrop_path
+                    }`}
+                    alt={card.original_title}
                   />
                   <p>{card.original_title}</p>
                 </div>

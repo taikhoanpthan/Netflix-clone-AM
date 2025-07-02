@@ -48,3 +48,8 @@
   margin-top: 5px;
   line-height: 1.2;
 }
+.card.poster img {
+  height: 40vh; /* giữ tỉ lệ ảnh đứng */
+  object-fit: cover;
+  border-radius: 8px;
+}

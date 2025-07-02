@@ -87,7 +87,7 @@ const Home = () => {
       {/* More Cards Section */}
       <div className="more-cards">
         <Cardtitle title={"Top Rated"} category={"top_rated"} />
-        <Cardtitle title={"Up Coming"} category={"upcoming"} />
+        <Cardtitle title={"Up Coming"} category={"upcoming"} poster={true} />
         <Cardtitle title={"Now Playing"} category={"now_playing"} />
       </div>
 
